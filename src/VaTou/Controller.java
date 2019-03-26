@@ -31,7 +31,7 @@ public class Controller {
 
 			String[] options = new String[3]; // changer la taille si plus d'argments en compte
 			options[0] = "-U"; 		// unpruned tree
-			J48 tree = new J48(); 	// new instance of tree
+			J48 tree = new J48(); // new instance of tree
 
 			/* boucle en fonction du nombre d'exemple */
 			for (int i = 2; i < nbr_instances; i += nbr_instances * 0.1) {

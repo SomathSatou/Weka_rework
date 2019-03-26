@@ -12,6 +12,12 @@ public class Main {
 
     public static void main( String[] args ) {
         // TODO Auto-generated method stub
+    	
+        /**
+         *  TEST CONTROLLER arbreJ48  : Attention de bien mettre le bon chemin de fichier 
+         *  */
+        Controller arbretest = new Controller();
+        
         JFrame frame = new JFrame();
         frame.setBounds( 100, 100, 500, 500 );
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -50,6 +56,7 @@ public class Main {
 
             @Override
             public void actionPerformed( ActionEvent arg0 ) {
+                arbretest.arbreJ48(viewPath.getText());
 
             }
         } );
@@ -64,11 +71,8 @@ public class Main {
         frame.setVisible( true );
         
 
-        /**
-         *  TEST CONTROLLER arbreJ48  : Attention de bien mettre le bon chemin de fichier 
-         *  */
-        Controller arbretest = new Controller();
-        arbretest.arbreJ48("/home/etudiant/Cours/Semestre2/IA/weka-3-8-3/data/iris.arff");
+
+        //arbretest.arbreJ48("/home/etudiant/Cours/Semestre2/IA/weka-3-8-3/data/iris.arff");
     }
     
 
