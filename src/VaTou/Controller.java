@@ -1,6 +1,7 @@
 package VaTou;
 
 import java.util.Random;
+import java.util.Vector;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.trees.J48;
@@ -21,6 +22,10 @@ public class Controller {
 			int nbr_instances = data.numInstances();
 			int nbr_iterations_pour_le_test = 1;
 
+			Vector<Integer> nbr_feuilles = new Vector<Integer>();
+			Vector<Double> pourcentage_reussite = new Vector<Double>();
+			
+			
 			/*
 			 * setting class attribute if the data format does not provide this information
 			 * For example, the XRFF format saves the class attribute information as well ca
@@ -48,7 +53,17 @@ public class Controller {
 				Evaluation eval = new Evaluation(data);
 				eval.crossValidateModel(tree, data, 5, new Random(1)); // ici 5 constante pour la crossvalidation
 
-				System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+				//System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+				System.out.println("Resultats summary \n pourcentage bien classé : " + eval.pctCorrect() + "\n");
+				
+				nbr_feuilles.add(i);
+				pourcentage_reussite.add(eval.pctCorrect());
+			}
+			// affichage d'un tableau moche pour l'instant
+			System.out.println(" nbr min de feuilles \t|% de réussite \t| ");
+			for (int i = 0 ; i < nbr_feuilles.size(); i++) {
+				System.out.println("|" + nbr_feuilles.get(i) + "\t\t\t|" + pourcentage_reussite.get(i) + "\t|");
+				
 			}
 
 		} catch (Exception e) {
