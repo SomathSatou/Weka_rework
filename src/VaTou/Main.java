@@ -62,6 +62,14 @@ public class Main {
         frame.getContentPane().add( launch );
 
         frame.setVisible( true );
+        
+
+        /**
+         *  TEST CONTROLLER arbreJ48  : Attention de bien mettre le bon chemin de fichier 
+         *  */
+        Controller arbretest = new Controller();
+        arbretest.arbreJ48("/home/etudiant/Cours/Semestre2/IA/weka-3-8-3/data/iris.arff");
     }
+    
 
 }
