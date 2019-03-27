@@ -72,6 +72,7 @@ public class Main {
         frame.setVisible( true );
 
         // arbretest.arbreJ48("/home/etudiant/Cours/Semestre2/IA/weka-3-8-3/data/iris.arff");
+
     }
 
 }
