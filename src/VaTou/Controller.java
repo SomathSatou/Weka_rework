@@ -1,11 +1,15 @@
 package VaTou;
 
+import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.Vector;
 
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+
+
 
 public class Controller {
 
@@ -13,7 +17,9 @@ public class Controller {
 	 * pour ouvrir et traiter un projet comme sous weka
 	 *
 	 */
-	public void arbreJ48(String chemin_file) {
+	public Resultat_tableau arbreJ48(String chemin_file) {
+		Resultat_tableau resultat = new Resultat_tableau();
+		
 		try {
 			
 			DataSource source = new DataSource(chemin_file);
@@ -21,6 +27,10 @@ public class Controller {
 			int nbr_instances = data.numInstances();
 			int nbr_iterations_pour_le_test = 1;
 
+			Vector<Integer> nbr_feuilles = new Vector<Integer>();
+			Vector<Double> pourcentage_reussite = new Vector<Double>();
+			
+			
 			/*
 			 * setting class attribute if the data format does not provide this information
 			 * For example, the XRFF format saves the class attribute information as well ca
@@ -48,11 +58,23 @@ public class Controller {
 				Evaluation eval = new Evaluation(data);
 				eval.crossValidateModel(tree, data, 5, new Random(1)); // ici 5 constante pour la crossvalidation
 
-				System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+				//System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+				System.out.println("Resultats summary \n pourcentage bien classé : " + eval.pctCorrect() + "\n");
+				
+				nbr_feuilles.add(i);
+				pourcentage_reussite.add(eval.pctCorrect());
 			}
+			
+			resultat.setNbr_feuilles(nbr_feuilles);
+			resultat.setPourcentage_reussite(pourcentage_reussite);
+			
+			resultat.affichage();
+			
 
 		} catch (Exception e) {
 
 		}
+		
+		return resultat;
 	}
 }
