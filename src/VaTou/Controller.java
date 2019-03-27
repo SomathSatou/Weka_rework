@@ -1,5 +1,6 @@
 package VaTou;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Vector;
 
@@ -8,13 +9,17 @@ import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
+
+
 public class Controller {
 
 	/**
 	 * pour ouvrir et traiter un projet comme sous weka
 	 *
 	 */
-	public void arbreJ48(String chemin_file) {
+	public Resultat_tableau arbreJ48(String chemin_file) {
+		Resultat_tableau resultat = new Resultat_tableau();
+		
 		try {
 			
 			DataSource source = new DataSource(chemin_file);
@@ -59,15 +64,17 @@ public class Controller {
 				nbr_feuilles.add(i);
 				pourcentage_reussite.add(eval.pctCorrect());
 			}
-			// affichage d'un tableau moche pour l'instant
-			System.out.println(" nbr min de feuilles \t|% de réussite \t| ");
-			for (int i = 0 ; i < nbr_feuilles.size(); i++) {
-				System.out.println("|" + nbr_feuilles.get(i) + "\t\t\t|" + pourcentage_reussite.get(i) + "\t|");
-				
-			}
+			
+			resultat.setNbr_feuilles(nbr_feuilles);
+			resultat.setPourcentage_reussite(pourcentage_reussite);
+			
+			resultat.affichage();
+			
 
 		} catch (Exception e) {
 
 		}
+		
+		return resultat;
 	}
 }
