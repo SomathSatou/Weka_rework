@@ -57,8 +57,7 @@ public class Main {
 
             @Override
             public void actionPerformed( ActionEvent arg0 ) {
-                arbretest.arbreJ48( viewPath.getText() );
-                ViewRes vr = new ViewRes();
+                ViewRes vr = new ViewRes( arbretest.arbreJ48( viewPath.getText() ) );
             }
         } );
         launch.setBounds( 150, 120, 200, 50 );
