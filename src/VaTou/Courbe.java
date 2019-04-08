@@ -14,7 +14,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class Courbe extends JPanel {
 
-    public Courbe( Resultat_tableau res ) {
+    public Courbe( Resultat_tableau res, String algo ) {
         super();
         this.setBounds( 530, 5, 700, 700 );
         // this.setSize( 500, 500 );
@@ -22,7 +22,7 @@ public class Courbe extends JPanel {
         DecimalFormat df2 = new DecimalFormat( ".###" );
 
         // create a dataset...
-        XYSeries series = new XYSeries( "J48" );
+        XYSeries series = new XYSeries( algo );
         for ( int i = 0; i < res.getNbr_feuilles().size(); i++ ) {
             series.add( res.getNbr_feuilles().get( i ),
                     res.getPourcentage_reussite().get( i ) );

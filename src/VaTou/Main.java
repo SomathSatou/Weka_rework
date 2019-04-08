@@ -48,7 +48,7 @@ public class Main {
         JLabel algo = new JLabel( "choix de l'algorithme : " );
         algo.setBounds( 10, 70, 480, 20 );
 
-        String[] algos = { "J48", "item2" };
+        String[] algos = { "J48", "Random Forest" };
         JComboBox choixAlgo = new JComboBox( algos );
         choixAlgo.setBounds( 10, 90, 480, 30 );
 
@@ -57,7 +57,18 @@ public class Main {
 
             @Override
             public void actionPerformed( ActionEvent arg0 ) {
-                ViewRes vr = new ViewRes( arbretest.arbreJ48( viewPath.getText() ) );
+                ViewRes vr;
+                switch ( choixAlgo.getSelectedIndex() ) {
+                case 0:
+                    vr = new ViewRes( arbretest.arbreJ48( viewPath.getText() ), "J48" );
+                    break;
+                case 1:
+                    vr = new ViewRes( arbretest.randomForest( viewPath.getText() ), "Random Forest" );
+                    break;
+                default:
+                    break;
+
+                }
             }
         } );
         launch.setBounds( 150, 120, 200, 50 );

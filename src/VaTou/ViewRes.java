@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 public class ViewRes {
-    ViewRes( Resultat_tableau res ) {
+    ViewRes( Resultat_tableau res, String algo ) {
         JFrame resFrame = new JFrame();
         resFrame.setBounds( 600, 100, 1250, 500 );
         resFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -29,7 +29,7 @@ public class ViewRes {
         resTab.setText(
                 resTab.getText() + "\t-------------------------------------------------------------------------\n" );
 
-        Courbe tc = new Courbe( res );
+        Courbe tc = new Courbe( res, algo );
 
         resFrame.add( resTab );
         resFrame.add( tc );
